@@ -43,7 +43,7 @@ app.get('/comments', (req, res) => {
         {
             author: 'Sabrina',
             message: 'Wahoo!',
-        }
+        },
     ]);
 });
 

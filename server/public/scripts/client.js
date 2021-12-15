@@ -37,8 +37,9 @@ function onReady() {
 
 function render(comments) {
     // Do some jQuery to render
+    $('#div').empty();
     for (let item of comments) {
-        $('#body').append(`
+        $('#div').append(`
             <h2>author:<br> ${item.author}</h2>
             <h3>comment:<br> ${item.message}</h3>
         `);

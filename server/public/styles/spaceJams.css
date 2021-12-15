@@ -1,4 +1,19 @@
 body {
     background-color: rgb(122, 19, 91);
     color: rgb(243, 224, 196);
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+h3 {
+    color:rgb(206, 171, 119);
+    text-align: center;
+}
+
+button {
+    text-align: center;
 }
