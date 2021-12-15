@@ -38,8 +38,12 @@ app.get('/comments', (req, res) => {
     res.send([
         {
             author: 'Edan',
-            message: '1996 space James ftw',
+            message: '1996 space Jams ftw',
         },
+        {
+            author: 'Sabrina',
+            message: 'Wahoo!',
+        }
     ]);
 });
 

@@ -22,15 +22,27 @@ function onReady() {
         url: '/comments',
     };
     
+
     $.ajax(ajaxOptions)
         .then( (response) => {
             console.log('ajax request complete', response);
+            render(response);
     });
 
     console.log(`
         made a network request, but no one hsa time to wait for that
         `);
     
+}
+
+function render(comments) {
+    // Do some jQuery to render
+    for (let item of comments) {
+        $('#body').append(`
+            <h2>author:<br> ${item.author}</h2>
+            <h3>comment:<br> ${item.message}</h3>
+        `);
+    }
 }
 
 function onClick() {
