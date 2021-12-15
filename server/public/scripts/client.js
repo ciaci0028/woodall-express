@@ -8,31 +8,14 @@ function onReady() {
     console.log('Super ready');
 
     $('button').on('click', onClick);
+    $('#commentForm').on('submit', onAddComment);
 
+    refresh();
     // TODO
     // Write some code to get data
     // from GET /comments endpoint
     // and then render data to the DOM
 
-    // Make a network/HTTP/AJAX request
-    // As an argument, gets an object
-    // Request over the network to data warehouse
-    let ajaxOptions = {
-        method: 'GET',
-        url: '/comments',
-    };
-    
-
-    $.ajax(ajaxOptions)
-        .then( (response) => {
-            console.log('ajax request complete', response);
-            render(response);
-    });
-
-    console.log(`
-        made a network request, but no one hsa time to wait for that
-        `);
-    
 }
 
 function render(comments) {
@@ -50,4 +33,53 @@ function onClick() {
     $('button').css(
         'background', 'green'
     )
+}
+
+function onAddComment(event) {
+    // Don't reload the page
+    event.preventDefault();
+
+    let inputComment = {
+        author: $('#authorInput').val(),
+        message: $('#messageInput').val(),
+    }
+
+    // Console.log to test
+    console.log(inputComment)
+
+    // Send data back to the server
+    $.ajax({
+        method: "POST",
+        url: "/comments",
+        data: inputComment,
+    })
+        .then((reponse) => {
+            console.log(reponse);
+            // Refresh page
+            // Get commenets again and render to DOM
+            refresh();
+        });
+}
+
+function refresh() {
+
+    // Make a network/HTTP/AJAX request
+    // As an argument, gets an object
+    // Request over the network to data warehouse
+    let ajaxOptions = {
+        method: 'GET',
+        url: '/comments',
+    };
+    
+
+    $.ajax(ajaxOptions)
+        .then( (response) => {
+            console.log('ajax request complete', response);
+            render(response);
+    });
+
+    console.log(`
+        made a network request, but no one has time to wait for that
+        `);
+    
 }

@@ -3,6 +3,7 @@
 */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // express is a function
 // that returns an 'app' object
@@ -11,6 +12,10 @@ const app = express();
 // A shortcut to setup endpoints for
 // any file in that folder
 app.use(express.static('server/public'));
+
+// Body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Handle requests for GET /space-jams
 // Setup a GET /space-james endpoint
@@ -30,23 +35,35 @@ app.get('/space-jams', (req, res) => {
 
 });
 
+let comments = [
+    {
+        author: 'Edan',
+        message: '1996 space Jams ftw',
+    },
+    {
+        author: 'Sabrina',
+        message: 'Wahoo!',
+    },
+];
+
 // Create a get comments end point
 // See this at the path
 app.get('/comments', (req, res) => {
-    console.log('comments have been visited');
+    console.log('in get comments');
 
-    res.send([
-        {
-            author: 'Edan',
-            message: '1996 space Jams ftw',
-        },
-        {
-            author: 'Sabrina',
-            message: 'Wahoo!',
-        },
-    ]);
+    res.send(comments);
 });
 
+// POST /comments endpoint
+app.post('/comments', (req, res) => {
+    console.log('in post comments', req.body);
+    
+    //TO DO: save comment to the server
+    comments.push(req.body);
+
+    //Send back a thumbs up
+    res.sendStatus(201);
+});
 
 // listen on port 5000
 const port = 5000;

@@ -11,10 +11,28 @@
 </head>
 <body id="body">
     <h1>Ready for Some Space Jams</h1>
-    <button>Awesome Button</button>
+    <button id="awesomeButton">Awesome Button</button>
     <div id="div">
         <h2 id="author"></h2>
         <h3 id="comment"></h3>
     </div>
+    <form id="commentForm">
+        <!-- Add a comment form -->
+        <h2>Add a comment</h2>
+        <textarea 
+            id="messageInput"
+            rows="4"
+            cols="45"
+            placeholder="Comment Here"
+        ></textarea>
+        <br>
+        <input
+            id="authorInput"
+            type="text"
+            placeholder="Your Name"
+        /> 
+        <br>
+        <input type="submit">
+    </form>
 </body>
 </html>
